@@ -1,0 +1,337 @@
+/* Pendulum Simulator Styles */
+.pendulum-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pendulum-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pendulum-header h2 { 
+  color: #0072ff; 
+  margin: 0 0 6px; 
+  font-size: 2.2rem;
+}
+
+.pendulum-header p { 
+  color: #555; 
+  margin: 0; 
+  font-size: 1.1rem;
+}
+
+.pendulum-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.control-panel {
+  background: #fff; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 12px; 
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.control-panel h3 { 
+  margin: 0 0 12px; 
+  font-size: 1.1rem; 
+  color: #0072ff;
+}
+
+.control-group { 
+  margin-bottom: 12px; 
+}
+
+.control-group label { 
+  display: block; 
+  margin-bottom: 4px; 
+  font-weight: 500; 
+  color: #333;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  margin: 4px 0;
+  accent-color: #0072ff;
+}
+
+.control-group input[type="number"], 
+.control-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.control-group input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #0072ff;
+}
+
+.pendulum-actions { 
+  display: flex; 
+  gap: 10px; 
+  flex-wrap: wrap; 
+  margin-bottom: 12px;
+}
+
+.pendulum-btn { 
+  background: linear-gradient(135deg, #00c6ff, #0072ff); 
+  color: #fff; 
+  border: none; 
+  padding: 10px 16px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pendulum-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 114, 255, 0.3);
+}
+
+.pendulum-btn.secondary { 
+  background: linear-gradient(135deg, #6c757d, #adb5bd); 
+}
+
+.pendulum-btn.secondary:hover {
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.canvas-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.canvas-section h3 { 
+  margin: 0 0 12px; 
+  color: #0072ff;
+}
+
+.canvas-wrapper { 
+  display: flex; 
+  justify-content: center; 
+  padding: 16px;
+  background: linear-gradient(180deg, #f8fbff, #eef5ff);
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+canvas#pendulumCanvas { 
+  border-radius: 8px; 
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.data-panel {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.data-panel h3 { 
+  margin: 0 0 12px; 
+  color: #0072ff;
+}
+
+.data-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+  gap: 12px; 
+  margin-bottom: 16px;
+}
+
+.data-item { 
+  background: #f8f9fa; 
+  padding: 12px; 
+  border-radius: 8px; 
+  border-left: 4px solid #4a90e2; 
+  text-align: center;
+}
+
+.data-item .data-label { 
+  color: #666; 
+  font-size: 0.9rem; 
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.data-item .data-value { 
+  color: #111; 
+  font-weight: 700; 
+  font-size: 1.1rem;
+}
+
+.formula-display {
+  background: #f0faff;
+  border: 1px solid #b3d9ff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.formula-display h4 {
+  margin: 0 0 12px;
+  color: #8b5a2b;
+}
+
+.equation {
+  background: #fff;
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  border-left: 3px solid #4a90e2;
+}
+
+.graph-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.graph-section h3 { 
+  margin: 0 0 12px; 
+  color: #0072ff;
+}
+
+.graph-section h4 {
+  margin: 0 0 8px;
+  color: #666;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.graph-wrapper { 
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+canvas#displacementGraph,
+canvas#energyGraph {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Pendulum specific animations */
+.pendulum-bob {
+  animation: swing 2s ease-in-out infinite alternate;
+}
+
+@keyframes swing {
+  0% { transform: rotate(-30deg); }
+  100% { transform: rotate(30deg); }
+}
+
+/* Dark mode styles */
+.dark-mode .pendulum-container,
+.dark-mode .control-panel,
+.dark-mode .canvas-section,
+.dark-mode .data-panel,
+.dark-mode .graph-section {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-color: #4a5568;
+}
+
+.dark-mode .pendulum-header h2 {
+  color: #63b3ed;
+}
+
+.dark-mode .pendulum-header p {
+  color: #a0aec0;
+}
+
+.dark-mode .data-item {
+  background: #4a5568;
+  color: #e2e8f0;
+  border-left-color: #63b3ed;
+}
+
+.dark-mode .formula-display {
+  background: #4a5568;
+  border-color: #63b3ed;
+  color: #e2e8f0;
+}
+
+.dark-mode .equation {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-left-color: #63b3ed;
+}
+
+.dark-mode canvas#pendulumCanvas {
+  background: #181c20;
+  border-color: #63b3ed;
+}
+
+.dark-mode .canvas-wrapper {
+  background: #4a5568;
+  border-color: #63b3ed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pendulum-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .pendulum-actions {
+    flex-direction: column;
+  }
+  
+  .pendulum-btn {
+    width: 100%;
+  }
+  
+  canvas#pendulumCanvas {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .graph-wrapper > div {
+    flex-direction: column !important;
+  }
+  
+  .graph-wrapper canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Energy visualization colors */
+.kinetic-energy { color: #e53e3e; }
+.potential-energy { color: #3182ce; }
+.total-energy { color: #38a169; }
+
+/* Vector arrow styles */
+.vector-arrow {
+  stroke-width: 2;
+  fill: none;
+}
+
+.velocity-vector { stroke: #e53e3e; }
+.force-vector { stroke: #3182ce; }
+.acceleration-vector { stroke: #38a169; }

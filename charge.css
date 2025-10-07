@@ -1,0 +1,259 @@
+/* Charging Simulator Styles */
+.charge-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.charge-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.charge-header h2 { 
+  color: #0072ff; 
+  margin: 0 0 6px; 
+  font-size: 2.2rem;
+}
+
+.charge-header p { 
+  color: #555; 
+  margin: 0; 
+  font-size: 1.1rem;
+}
+
+.charge-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.charge-panel {
+  background:#fff; border:1px solid #e0e0e0; border-radius:12px; padding:16px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.charge-panel h3 { 
+  margin: 0 0 12px; 
+  font-size: 1.1rem; 
+  color: #0072ff;
+}
+
+.charge-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.charge-btn { 
+  background: linear-gradient(135deg, #00c6ff, #0072ff); 
+  color: #fff; 
+  border: none; 
+  padding: 10px 16px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.charge-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 114, 255, 0.3);
+}
+
+.charge-btn.secondary { 
+  background: linear-gradient(135deg, #6c757d, #adb5bd); 
+}
+
+.charge-btn.secondary:hover {
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.charge-btn.danger { 
+  background: linear-gradient(135deg, #dc3545, #ff6b6b); 
+}
+
+.charge-btn.danger:hover {
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.charge-canvas-panel { background:#fff; border:1px solid #e0e0e0; border-radius:12px; padding:12px; margin-bottom:16px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+.charge-canvas-wrap { display:flex; justify-content:center; overflow-x:auto; padding:8px; }
+canvas#chargeCanvas, canvas#scCanvas, canvas#pcCanvas { max-width:100%; border-radius:8px; background:linear-gradient(180deg,#f8fbff,#eef5ff); border:1px solid #e0e0e0; }
+canvas#scCanvas { min-width:900px; }
+
+.charge-data { background:#fff; border:1px solid #e0e0e0; border-radius:12px; padding:16px; display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+.charge-item { 
+  background: #f8f9fa; 
+  padding: 12px; 
+  border-radius: 8px; 
+  border-left: 4px solid #0072ff; 
+}
+.charge-item .label { 
+  color: #666; 
+  font-size: 0.9rem; 
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.charge-item .value { 
+  color: #111; 
+  font-weight: 700; 
+  font-size: 1.1rem;
+}
+
+/* Graph section styling */
+.graph-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.graph-section h3 { 
+  margin: 0 0 12px; 
+  color: #0072ff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.graph-wrapper { 
+  display: flex; 
+  justify-content: center; 
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Branch info section styling */
+#pcBranchInfo {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+#pcBranchInfo h3 {
+  margin: 0 0 12px;
+  color: #0072ff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+#scResistorList, #pcBranchList {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+}
+
+/* Ensure resistor cards don't overlap */
+#scResistorList > div, #pcBranchList > div {
+  margin: 0 !important;
+  position: static !important;
+  clear: both !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Additional styling for resistor cards */
+.resistor-card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.resistor-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Theory section styling */
+.charge-theory { 
+  background: #fff; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 12px; 
+  padding: 16px; 
+  margin-top: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.charge-theory h3 { 
+  margin-top: 0; 
+  color: #0072ff;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.badge { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; }
+.badge.neg { background:#377dff; box-shadow:0 0 8px rgba(55,125,255,0.6); }
+.badge.pos { background:#ff5b5b; box-shadow:0 0 8px rgba(255,91,91,0.6); }
+.badge.neutral { background:#7a7a7a; }
+
+/* Dark mode styles */
+.dark-mode .charge-container,
+.dark-mode .charge-panel,
+.dark-mode .charge-canvas-panel,
+.dark-mode .charge-data,
+.dark-mode .charge-theory,
+.dark-mode .graph-section,
+.dark-mode #pcBranchInfo {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-color: #4a5568;
+}
+
+.dark-mode #chargeDarkModeBtn,
+.dark-mode #posDarkModeBtn,
+.dark-mode #pcDark,
+.dark-mode #scDark { 
+  background: linear-gradient(90deg, #00c6ff, #0072ff); 
+}
+
+.dark-mode .charge-header h2 {
+  color: #63b3ed;
+}
+
+.dark-mode .charge-header p {
+  color: #a0aec0;
+}
+
+.dark-mode .charge-panel h3,
+.dark-mode .charge-theory h3,
+.dark-mode .graph-section h3,
+.dark-mode #pcBranchInfo h3 {
+  color: #e2e8f0;
+}
+
+.dark-mode .charge-item {
+  background: #4a5568;
+  color: #e2e8f0;
+  border-left-color: #63b3ed;
+}
+
+.dark-mode .charge-item .label {
+  color: #a0aec0;
+}
+
+.dark-mode .charge-item .value {
+  color: #e2e8f0;
+}
+
+.dark-mode canvas#chargeCanvas,
+.dark-mode canvas#scCanvas,
+.dark-mode canvas#pcCanvas,
+.dark-mode canvas#posCanvas {
+  background: linear-gradient(180deg, #2d3748, #4a5568);
+  border-color: #63b3ed;
+}
+
+.dark-mode .graph-wrapper {
+  background: #4a5568;
+  border-color: #63b3ed;
+}
+
+

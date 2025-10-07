@@ -1,0 +1,657 @@
+/* Thermal Expansion Simulator Styles */
+.thermal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.thermal-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.thermal-header h2 {
+  font-size: 2.2rem;
+  color: #0072ff;
+  margin-bottom: 10px;
+}
+
+.thermal-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Controls Section */
+.thermal-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.control-panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.control-panel h3 {
+  color: #222;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-panel h3::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #0072ff, #00c6ff);
+  border-radius: 2px;
+}
+
+.control-group {
+  margin-bottom: 15px;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.95rem;
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e0e0e0;
+  outline: none;
+  accent-color: #0072ff;
+}
+
+.control-group input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.control-group input[type="number"]:focus {
+  outline: none;
+  border-color: #0072ff;
+  box-shadow: 0 0 0 2px rgba(0, 114, 255, 0.1);
+}
+
+.control-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.control-group select:focus {
+  outline: none;
+  border-color: #0072ff;
+  box-shadow: 0 0 0 2px rgba(0, 114, 255, 0.1);
+}
+
+.control-group input[type="radio"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+  accent-color: #0072ff;
+}
+
+.control-group input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+  accent-color: #0072ff;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-item:hover {
+  background: #e3f2fd;
+  border-color: #0072ff;
+}
+
+.radio-item input[type="radio"]:checked + label {
+  color: #0072ff;
+  font-weight: 600;
+}
+
+.radio-item input[type="radio"]:checked {
+  background: #0072ff;
+}
+
+/* Dark Mode Button */
+#thermalDarkModeBtn {
+  display: block;
+  margin: 0 auto 20px auto;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+#thermalDarkModeBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 114, 255, 0.3);
+}
+
+.dark-mode #thermalDarkModeBtn {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+}
+
+/* Button Styles */
+.thermal-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.thermal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 114, 255, 0.3);
+}
+
+.thermal-btn.secondary {
+  background: linear-gradient(135deg, #6c757d, #adb5bd);
+}
+
+.thermal-btn.secondary:hover {
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.thermal-btn.danger {
+  background: linear-gradient(135deg, #dc3545, #ff6b6b);
+}
+
+.thermal-btn.danger:hover {
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Canvas Section */
+.canvas-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.canvas-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.canvas-wrapper canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Data Panel */
+.data-panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.data-panel h3 {
+  color: #222;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.data-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #0072ff;
+}
+
+.data-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.data-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.formula-display {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 15px;
+}
+
+.formula-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: #0072ff;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.result-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Comparison Section */
+.comparison-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.comparison-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comparison-toggle input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.comparison-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comparison-column {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  min-width: 0; /* allow content to shrink within grid */
+}
+
+.comparison-column h4 {
+  color: #222;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.comparison-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.comparison-result {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.comparison-result h5 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.comparison-result .value {
+  color: #0072ff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Graph Section */
+.graph-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.graph-section h3 {
+  color: #222;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.graph-wrapper {
+  text-align: center;
+}
+
+.graph-wrapper canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Info Panel */
+.info-panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.info-panel h3 {
+  color: #222;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.info-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.info-section h4 {
+  color: #0072ff;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-section li {
+  padding: 5px 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+}
+
+.info-section li:last-child {
+  border-bottom: none;
+}
+
+/* Dark mode styles */
+.dark-mode .thermal-container,
+.dark-mode .control-panel,
+.dark-mode .canvas-section,
+.dark-mode .data-panel,
+.dark-mode .comparison-section,
+.dark-mode .graph-section,
+.dark-mode .info-panel {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-mode .thermal-header h2 {
+  color: #63b3ed;
+}
+
+.dark-mode .thermal-header p {
+  color: #a0aec0;
+}
+
+.dark-mode .control-panel h3,
+.dark-mode .data-panel h3,
+.dark-mode .comparison-section h3,
+.dark-mode .graph-section h3,
+.dark-mode .info-panel h3 {
+  color: #e2e8f0;
+}
+
+.dark-mode .control-group label {
+  color: #e2e8f0;
+}
+
+.dark-mode .control-group input[type="number"],
+.dark-mode .control-group select {
+  background: #4a5568;
+  border-color: #718096;
+  color: #e2e8f0;
+}
+
+.dark-mode .control-group input[type="number"]:focus,
+.dark-mode .control-group select:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 0 2px rgba(0, 114, 255, 0.2);
+}
+
+.dark-mode .radio-item {
+  background: #4a5568;
+  border-color: #718096;
+  color: #e2e8f0;
+}
+
+.dark-mode .radio-item:hover {
+  background: #2d3748;
+  border-color: #0072ff;
+}
+
+.dark-mode .data-item,
+.dark-mode .comparison-column,
+.dark-mode .comparison-result {
+  background: #4a5568;
+  border-color: #718096;
+  color: #e2e8f0;
+}
+
+.dark-mode .data-label,
+.dark-mode .comparison-result h5 {
+  color: #a0aec0;
+}
+
+.dark-mode .data-value,
+.dark-mode .comparison-result .value {
+  color: #0072ff;
+}
+
+.dark-mode .formula-display {
+  background: #4a5568;
+  border-color: #718096;
+}
+
+.dark-mode .formula-text {
+  color: #0072ff;
+}
+
+.dark-mode .result-text {
+  color: #a0aec0;
+}
+
+.dark-mode .info-section h4 {
+  color: #0072ff;
+}
+
+.dark-mode .info-section li {
+  color: #a0aec0;
+  border-bottom-color: #4a5568;
+}
+
+.dark-mode canvas#thermalCanvas {
+  background: linear-gradient(180deg, #2d3748, #4a5568);
+  border-color: #63b3ed;
+}
+
+.dark-mode .canvas-wrapper {
+  background: #4a5568;
+  border-color: #63b3ed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .thermal-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-results {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+  }
+  
+  .thermal-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .control-panel {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thermal-container {
+    padding: 10px;
+  }
+  
+  .thermal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .thermal-header p {
+    font-size: 1rem;
+  }
+  
+  .control-panel h3 {
+    font-size: 1.1rem;
+  }
+  
+  .data-value {
+    font-size: 1rem;
+  }
+  
+  .formula-text {
+    font-size: 1rem;
+  }
+}
+
+/* Animation for temperature changes */
+@keyframes temperatureGlow {
+  0% { box-shadow: 0 0 5px rgba(0, 114, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 114, 255, 0.6); }
+  100% { box-shadow: 0 0 5px rgba(0, 114, 255, 0.3); }
+}
+
+.temperature-changing {
+  animation: temperatureGlow 1s ease-in-out infinite;
+}
+
+/* Material color indicators */
+.material-indicator {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Loading animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #0072ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
