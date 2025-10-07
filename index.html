@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Physics Practical Lab</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="reflection.css" />
+  <link rel="stylesheet" href="heatflow.css" />
+  <link rel="stylesheet" href="thermal.css" />
+  <link rel="stylesheet" href="css/charge.css" />
+  <link rel="stylesheet" href="css/projectile.css" />
+  <link rel="stylesheet" href="css/pendulum.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <header class="header">
+    <h1>🔬 Physics Practical Lab</h1>
+    <p>Interactive Simulations for Real Understanding</p>
+  </header>
+
+  <!-- Home Page Navigation -->
+  <div id="home-page" class="main-container">
+    <section class="intro">
+      <h2>🎓 Choose a Practical</h2>
+      <p>Click any topic below to start exploring real-world physics through simulation:</p>
+      <button id="dark-mode">Switch to Dark Mode</button>
+    </section>
+
+    <div class="practical-list">
+      <div class="card" onclick="showPractical('gravity')">
+        <h3>🌍 Gravity Drop</h3>
+        <p>See how gravity affects falling objects on different planets.</p>
+      </div>
+      <div class="card" onclick="showPractical('reflection')">
+        <h3>🔁 Light Reflection</h3>
+        <p>Understand how light reflects off various surfaces.</p>
+      </div>
+      <div class="card" onclick="showPractical('refraction')">
+        <h3>💧 Light Refraction</h3>
+        <p>Learn how light bends in water, glass, and air.</p>
+      </div>
+      <div class="card" onclick="showPractical('thermal')">
+        <h3>🔥 Thermal Expansion</h3>
+        <p>Discover how heat makes objects expand.</p>
+      </div>
+      <div class="card" onclick="showPractical('heatflow')">
+        <h3>🌡️ Heat Flow Rate</h3>
+        <p>Measure how materials transfer heat differently.</p>
+      </div>
+      <div class="card" onclick="showPractical('negative-charge')">
+        <h3>➖ Negative Charge</h3>
+        <p>Visualize electrons charging a body negatively.</p>
+      </div>
+      <div class="card" onclick="showPractical('positive-charge')">
+        <h3>➕ Positive Charge</h3>
+        <p>Understand how a body loses electrons.</p>
+      </div>
+      <div class="card" onclick="showPractical('parallel-circuit')">
+        <h3>🔌 Parallel Circuit</h3>
+        <p>Explore how current splits and flows in branches.</p>
+      </div>
+      <div class="card" onclick="showPractical('series-circuit')">
+        <h3>🔗 Series Circuit</h3>
+        <p>Simulate current flow in one complete loop.</p>
+      </div>
+      <div class="card" onclick="showPractical('projectile-motion')">
+        <h3>🎯 Projectile Motion</h3>
+        <p>Explore 2D motion of projectiles with realistic trajectories.</p>
+      </div>
+      <div class="card" onclick="showPractical('pendulum-simulator')">
+        <h3>⚖️ Pendulum Simulator</h3>
+        <p>Visualize simple harmonic motion and oscillations.</p>
+      </div>
+      <div class="card coming-soon" onclick="alert('🚀 Coming soon! New simulators are on the way.')">
+        <div class="soon-title">🚀 Coming Soon</div>
+        <h3>Exciting Simulators Ahead</h3>
+        <p>Get ready to explore! We’re working on brand new simulators to make science even more fun and interactive. Stay tuned for upcoming updates!</p>
+      </div>
+    </div>
+  </div>
+
+ <!-- PRACTICAL SECTIONS -->
+<div id="gravity" class="practical-section" style="display: none;">
+  <h2>🌍 Gravity Simulator</h2>
+
+  <div class="main-container">
+
+    <!-- Controls Section -->
+    <div class="controls">
+      <!-- General Controls -->
+      <label>
+        Select Planet
+        <select id="planet1">
+          <option value="none">None</option>
+          <option>Earth</option>
+          <option>Mars</option>
+          <option>Jupiter</option>
+          <option>Moon</option>
+          <option>Venus</option>
+          <option>Mercury</option>
+          <option>Saturn</option>
+          <option>Uranus</option>
+          <option>Neptune</option>
+        </select>
+      </label>
+
+      <label>
+        Select Object
+        <select id="object1">
+          <option value="ball">Ball</option>
+          <option value="stone">Stone</option>
+          <option value="paper">Paper</option>
+          <option value="feather">Feather</option>
+          <option value="pen">Pen</option>
+          <option value="book">Book</option>
+          <option value="leaf">Leaf</option>
+        </select>
+      </label>
+
+      <label>
+        Object Mass (kg)
+        <input type="number" id="mass1" min="0.1" step="0.1" value="1">
+      </label>
+
+      <label>
+        Gravity Field
+        <div id="gravity-field-meter">Gravity: 9.8 m/s²</div>
+      </label>
+
+      <label>
+        Height
+        <input type="range" id="height-slider" min="10" max="100" value="50">
+        <div id="height-value">Height: 50 ft</div>
+      </label>
+
+      <label>
+        Air Resistance
+        <input type="checkbox" id="toggle-air-resistance">
+      </label>
+
+      <label>
+        Sound
+        <input type="checkbox" id="toggle-sound" checked>
+      </label>
+
+      <label>
+        Simulation Speed
+        <input type="range" id="speed-slider" min="1" max="5" value="2">
+      </label>
+
+      <label>
+        Wind Strength
+        <input type="range" id="wind-strength" min="0" max="10" value="0">
+      </label>
+
+      <label>
+        Wind Direction
+        <select id="wind-direction">
+          <option value="none">None</option>
+          <option value="left">Left</option>
+          <option value="right">Right</option>
+        </select>
+      </label>
+
+      <button id="drop-button">Drop Object</button>
+      <button id="replay-button">Replay Last Drop</button>
+      <button id="gravityDarkMode">Switch to Dark Mode</button>
+    </div>
+
+    <!-- Simulation Area -->
+    <div class="simulation-area">
+      <div class="fall-container">
+        <div id="falling-object1">⚽</div>
+      </div>
+    </div>
+
+    <div id="timer1">Time: 0.00s</div>
+    <canvas id="graph-canvas" width="300" height="150"></canvas>
+
+    <!-- Compare Toggle -->
+    <button id="compare-toggle">Compare Objects</button>
+
+    <!-- Compare Section -->
+    <div id="compare-section" style="display: none;">
+      <div class="compare-controls">
+        <div class="object-column">
+          <!-- Object 1 Controls -->
+          <label>
+            Planet 1
+            <select id="planet2">
+              <option value="none">None</option>
+              <option>Earth</option>
+              <option>Mars</option>
+              <option>Jupiter</option>
+              <option>Moon</option>
+              <option>Venus</option>
+              <option>Mercury</option>
+              <option>Saturn</option>
+              <option>Uranus</option>
+              <option>Neptune</option>
+            </select>
+          </label>
+
+          <label>
+            Object 1
+            <select id="object2">
+              <option value="ball">Ball</option>
+              <option value="stone">Stone</option>
+              <option value="paper">Paper</option>
+              <option value="feather">Feather</option>
+              <option value="pen">Pen</option>
+              <option value="book">Book</option>
+              <option value="leaf">Leaf</option>
+            </select>
+          </label>
+
+          <label>
+            Object 1 Mass (kg)
+            <input type="number" id="mass2" min="0.1" step="0.1" value="1">
+          </label>
+
+          <label>
+            Gravity Field
+            <div id="gravity-field-meter2">Gravity: 9.8 m/s²</div>
+          </label>
+
+          <label>
+            Height
+            <input type="range" id="height-slider2" min="10" max="100" value="50">
+            <div id="height-value2">Height: 50 ft</div>
+          </label>
+        </div>
+
+        <div class="object-column">
+          <!-- Object 2 Controls -->
+          <label>
+            Planet 2
+            <select id="planet3">
+              <option value="none">None</option>
+              <option>Earth</option>
+              <option>Mars</option>
+              <option>Jupiter</option>
+              <option>Moon</option>
+              <option>Venus</option>
+              <option>Mercury</option>
+              <option>Saturn</option>
+              <option>Uranus</option>
+              <option>Neptune</option>
+            </select>
+          </label>
+
+          <label>
+            Object 2
+            <select id="object3">
+              <option value="ball">Ball</option>
+              <option value="stone">Stone</option>
+              <option value="paper">Paper</option>
+              <option value="feather">Feather</option>
+              <option value="pen">Pen</option>
+              <option value="book">Book</option>
+              <option value="leaf">Leaf</option>
+            </select>
+          </label>
+
+          <label>
+            Object 2 Mass (kg)
+            <input type="number" id="mass3" min="0.1" step="0.1" value="1">
+          </label>
+
+          <label>
+            Gravity Field
+            <div id="gravity-field-meter3">Gravity: 9.8 m/s²</div>
+          </label>
+
+          <label>
+            Height
+            <input type="range" id="height-slider3" min="10" max="100" value="50">
+            <div id="height-value3">Height: 50 ft</div>
+          </label>
+        </div>
+      </div>
+
+      <button id="drop-compare">Drop Both Objects</button>
+
+      <!-- Comparison Falling Area -->
+      <div class="compare-fall-area">
+        <div class="fall-container">
+          <div id="falling-object2">🪨</div>
+        </div>
+        <div class="fall-container">
+          <div id="falling-object3">📄</div>
+        </div>
+      </div>
+
+      <div id="timer2">Object 1 Time: 0.00s</div>
+      <div id="timer3">Object 2 Time: 0.00s</div>
+
+      <!-- Comparison Graphs -->
+      <canvas id="graph-canvas2" width="300" height="150"></canvas>
+      <canvas id="graph-canvas3" width="300" height="150"></canvas>
+    </div>
+
+    <!-- History Log -->
+    <h3>History Log</h3>
+    <ul id="history-list"></ul>
+  </div>
+  <button onclick="goHome()">⬅ Back to Home</button>
+</div>
+
+  <div id="reflection" class="practical-section" style="display: none;">
+    <div class="reflection-container">
+      <div class="reflection-header">
+        <h2>🔁 Reflection of Light</h2>
+        <p>Explore how light rays reflect off different surfaces and understand the law of reflection</p>
+      </div>
+
+      <button id="reflectionDarkModeBtn" class="reflection-btn">Switch to Dark Mode</button>
+
+      <div class="reflection-controls">
+        <div class="control-panel">
+          <h3>Surface Properties</h3>
+          <div class="control-group">
+            <label for="surfaceType">Surface Type:</label>
+            <select id="surfaceType">
+              <option value="smooth">Smooth Reflective</option>
+              <option value="rough">Rough Surface</option>
+              <option value="semi-matte">Semi-Matte</option>
+              <option value="concave">Concave Mirror</option>
+              <option value="convex">Convex Mirror</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>Angle Controls</h3>
+          <div class="control-group">
+            <label for="incidenceAngle">Angle of Incidence: <span id="incidenceDisplay">30</span>°</label>
+            <input type="range" id="incidenceAngle" min="1" max="89" value="30">
+          </div>
+          <div class="control-group">
+            <label for="reflectionAngle">Angle of Reflection: <span id="reflectionDisplay">30</span>°</label>
+            <input type="range" id="reflectionAngle" min="1" max="89" value="30">
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>Ray Colors</h3>
+          <div class="control-group">
+            <label for="incidentColor">Incident Ray Color:</label>
+            <input type="color" id="incidentColor" value="#ff4444">
+          </div>
+          <div class="control-group">
+            <label for="reflectedColor">Reflected Ray Color:</label>
+            <input type="color" id="reflectedColor" value="#4444ff">
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>Multiple Rays</h3>
+          <div class="control-group">
+            <button id="addRay" class="reflection-btn">Add Ray</button>
+            <button id="removeRay" class="reflection-btn secondary">Remove Ray</button>
+            <button id="resetRays" class="reflection-btn danger">Reset All Rays</button>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="canvas-wrapper">
+        <canvas id="simulationCanvas" width="900" height="550"></canvas>
+      </div>
+
+      <div class="info-panel">
+        <h3>Simulation Information</h3>
+        <div class="info-item">
+          <div class="info-label">Surface Type:</div>
+          <div class="info-value" id="surfaceInfo">Smooth Reflective Surface - Perfect reflection</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Angles:</div>
+          <div class="info-value" id="angleInfo">Angle of Incidence: 30° | Angle of Reflection: 30°</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Image Formation:</div>
+          <div class="info-value" id="imageInfo">Virtual and upright image</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Ray Count:</div>
+          <div class="info-value" id="rayCountInfo">Active Rays: 1</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="reflection-btn secondary" onclick="window.reflectionSimulator.reset()">Reset Simulation</button>
+        <button class="reflection-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="refraction" class="practical-section" style="display: none;">
+    <h2>💡 Refraction of Light</h2>
+  <button id="darkModeBtn" class="dark-mode-btn">Switch to Dark Mode</button>
+
+  <div class="controls-outer">
+    <div class="controls-panel">
+      <div class="controls">
+        <div class="control-group">
+          <label>Incident Angle: <span id="angleDisplay">30</span>°</label><br />
+          <input type="range" id="angleSlider" min="0" max="90" value="30" />
+        </div>
+        <div class="control-group">
+          <label>Top Medium:</label>
+          <select id="medium1">
+            <option value="air">Air</option>
+            <option value="glass">Glass</option>
+            <option value="water">Water</option>
+            <option value="oil">Oil</option>
+            <option value="diamond">Diamond</option>
+          </select>
+          <div class="ref-index">Ref. Index <span id="n1Display">1.000</span></div>
+        </div>
+        <div class="control-group">
+          <label>Bottom Medium:</label>
+          <select id="medium2">
+            <option value="air">Air</option>
+            <option value="glass">Glass</option>
+            <option value="water">Water</option>
+            <option value="oil">Oil</option>
+            <option value="diamond">Diamond</option>
+          </select>
+          <div class="ref-index">Ref. Index <span id="n2Display">1.500</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="canvas-outer">
+    <div class="canvas-panel">
+      <canvas id="simCanvas" width="600" height="400"></canvas>
+    </div>
+  </div>
+
+    <button onclick="goHome()">⬅ Back to Home</button>
+  </div>
+
+  <div id="thermal" class="practical-section" style="display: none;">
+    <div class="thermal-container">
+      <div class="thermal-header">
+        <h2>🔥 Thermal Expansion Simulator</h2>
+        <p>Explore how materials expand and contract with temperature changes. Observe linear, areal, and volumetric expansion in real-time.</p>
+      </div>
+
+      <button id="thermalDarkModeBtn" class="thermal-btn">Switch to Dark Mode</button>
+
+      <!-- Controls Section -->
+      <div class="thermal-controls">
+        <!-- Material Selection -->
+        <div class="control-panel">
+          <h3>🔧 Material Properties</h3>
+          <div class="control-group">
+            <label for="materialSelect">Material:</label>
+            <select id="materialSelect">
+              <option value="iron">Iron</option>
+              <option value="copper">Copper</option>
+              <option value="aluminum">Aluminum</option>
+              <option value="brass">Brass</option>
+              <option value="glass">Glass</option>
+              <option value="steel">Steel</option>
+              <option value="gold">Gold</option>
+              <option value="silver">Silver</option>
+              <option value="zinc">Zinc</option>
+              <option value="lead">Lead</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>Expansion Type:</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="linear" name="expansionType" value="linear" checked>
+                <label for="linear">Linear (Rods/Wires)</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="areal" name="expansionType" value="areal">
+                <label for="areal">Areal (Plates/Sheets)</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="volumetric" name="expansionType" value="volumetric">
+                <label for="volumetric">Volumetric (Cubes/Liquids)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Temperature Controls -->
+        <div class="control-panel">
+          <h3>🌡️ Temperature Control</h3>
+          <div class="control-group">
+            <label for="tempSlider">Temperature: <span id="tempDisplay">20°C</span></label>
+            <input type="range" id="tempSlider" min="-50" max="500" value="20">
+          </div>
+          <div class="control-group">
+            <label for="tempInput">Set Temperature (°C):</label>
+            <div class="button-group">
+              <input type="number" id="tempInput" min="-50" max="500" value="20" style="max-width:140px">
+              <button id="setTempBtn" class="thermal-btn">Set</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Heating & Cooling:</label>
+            <div class="button-group">
+              <button id="heatBtn" class="thermal-btn">🔥 Heat</button>
+              <button id="coolBtn" class="thermal-btn secondary">❄️ Cool</button>
+              <button id="pauseBtn" class="thermal-btn secondary">Pause</button>
+              <button id="resetBtn" class="thermal-btn danger">🔄 Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Initial Dimensions -->
+        <div class="control-panel">
+          <h3>📏 Initial Dimensions</h3>
+          <div class="control-group">
+            <label for="initialLength">Initial Length (mm):</label>
+            <input type="number" id="initialLength" value="100" min="10" max="500">
+          </div>
+          <div class="control-group">
+            <label for="initialArea">Initial Area (mm²):</label>
+            <input type="number" id="initialArea" value="10000" min="100" max="250000">
+          </div>
+          <div class="control-group">
+            <label for="initialVolume">Initial Volume (mm³):</label>
+            <input type="number" id="initialVolume" value="1000000" min="1000" max="125000000">
+          </div>
+        </div>
+
+        <!-- Comparison Mode -->
+        <div class="control-panel">
+          <h3>⚖️ Comparison Mode</h3>
+          <div class="comparison-toggle">
+            <input type="checkbox" id="compareToggle">
+            <label for="compareToggle">Compare Two Materials</label>
+          </div>
+          <div id="comparisonControls" style="display: none;">
+            <div class="comparison-controls">
+              <div class="comparison-column">
+                <h4>Material 1</h4>
+                <select id="material1Select">
+                  <option value="iron">Iron</option>
+                  <option value="copper">Copper</option>
+                  <option value="aluminum">Aluminum</option>
+                  <option value="brass">Brass</option>
+                  <option value="glass">Glass</option>
+                  <option value="steel">Steel</option>
+                  <option value="gold">Gold</option>
+                  <option value="silver">Silver</option>
+                  <option value="zinc">Zinc</option>
+                  <option value="lead">Lead</option>
+                </select>
+              </div>
+              <div class="comparison-column">
+                <h4>Material 2</h4>
+                <select id="material2Select">
+                  <option value="copper">Copper</option>
+                  <option value="iron">Iron</option>
+                  <option value="aluminum">Aluminum</option>
+                  <option value="brass">Brass</option>
+                  <option value="glass">Glass</option>
+                  <option value="steel">Steel</option>
+                  <option value="gold">Gold</option>
+                  <option value="silver">Silver</option>
+                  <option value="zinc">Zinc</option>
+                  <option value="lead">Lead</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas Section -->
+      <div class="canvas-section">
+        <h3>🎨 Visualization</h3>
+        <div class="canvas-wrapper">
+          <canvas id="thermalCanvas" width="800" height="500"></canvas>
+        </div>
+      </div>
+
+      <!-- Data Panel -->
+      <div class="data-panel">
+        <h3>📊 Real-time Data</h3>
+        <div class="data-grid">
+          <div class="data-item">
+            <div class="data-label">Current Temperature</div>
+            <div class="data-value" id="tempDisplay2">20°C</div>
+          </div>
+          <div class="data-item" id="dataItemExpansion">
+            <div class="data-label">Expansion</div>
+            <div class="data-value" id="expansionDisplay">0.000 mm</div>
+          </div>
+          <div class="data-item" id="dataItemMaterial">
+            <div class="data-label">Material</div>
+            <div class="data-value" id="materialDisplay">Iron</div>
+          </div>
+          <div class="data-item" id="dataItemAlpha">
+            <div class="data-label">Coefficient (α)</div>
+            <div class="data-value" id="alphaDisplay">12×10⁻⁶ /°C</div>
+          </div>
+        </div>
+        
+        <div class="formula-display" id="singleFormulaPanel">
+          <div class="formula-text" id="formulaDisplay">ΔL = L₀ × α × ΔT</div>
+          <div class="result-text" id="resultDisplay">100 × 1.20×10⁻⁵ × 0</div>
+        </div>
+
+        <!-- Comparison mode formulas for both objects -->
+        <div class="formula-display" id="comparisonFormulaPanel" style="display:none">
+          <div class="data-grid" style="gap:10px">
+            <div class="data-item">
+              <div class="data-label">Material 1 Formula</div>
+              <div class="formula-text" id="compFormula1">ΔL = L₀ × α × ΔT</div>
+              <div class="result-text" id="compResult1">100 × 1.20×10⁻⁵ × 0</div>
+            </div>
+            <div class="data-item">
+              <div class="data-label">Material 2 Formula</div>
+              <div class="formula-text" id="compFormula2">ΔL = L₀ × α × ΔT</div>
+              <div class="result-text" id="compResult2">100 × 1.70×10⁻⁵ × 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Results -->
+      <div id="comparisonResults" class="comparison-section" style="display: none;">
+        <h3>⚖️ Comparison Results</h3>
+        <div class="comparison-results">
+          <div class="comparison-result">
+            <h5>Material 1</h5>
+            <div class="value" id="compMat1">Iron</div>
+            <div class="data-label" style="margin-top:6px">Coefficient (α)</div>
+            <div class="value" id="compAlpha1">12×10⁻⁶ /°C</div>
+            <hr style="margin:10px 0; opacity:0.3">
+            <h5>Material 1 Expansion</h5>
+            <div class="value" id="expansion1Display">0.000 mm</div>
+          </div>
+          <div class="comparison-result">
+            <h5>Material 2</h5>
+            <div class="value" id="compMat2">Copper</div>
+            <div class="data-label" style="margin-top:6px">Coefficient (α)</div>
+            <div class="value" id="compAlpha2">17×10⁻⁶ /°C</div>
+            <hr style="margin:10px 0; opacity:0.3">
+            <h5>Material 2 Expansion</h5>
+            <div class="value" id="expansion2Display">0.000 mm</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Section -->
+      <div class="graph-section">
+        <h3>📈 Expansion vs Temperature Graph</h3>
+        <div class="graph-wrapper" id="graphSingleWrapper">
+          <canvas id="thermalGraph" width="600" height="300"></canvas>
+        </div>
+        <div class="graph-wrapper" id="graphCompareWrapper" style="display:none">
+          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center">
+            <div style="flex:1 1 300px; max-width:620px">
+              <div class="data-item" style="margin-bottom:8px">
+                <div class="data-label">Material 1</div>
+                <div class="data-value"><span id="graphMat1">Iron</span> — α: <span id="graphAlpha1">12×10⁻⁶ /°C</span></div>
+              </div>
+              <canvas id="thermalGraph1" width="600" height="300"></canvas>
+            </div>
+            <div style="flex:1 1 300px; max-width:620px">
+              <div class="data-item" style="margin-bottom:8px">
+                <div class="data-label">Material 2</div>
+                <div class="data-value"><span id="graphMat2">Copper</span> — α: <span id="graphAlpha2">17×10⁻⁶ /°C</span></div>
+              </div>
+              <canvas id="thermalGraph2" width="600" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Panel -->
+      <div class="info-panel">
+        <h3>ℹ️ Theory & Applications</h3>
+        <div class="info-content">
+          <div class="info-section">
+            <h4>📚 Physics Theory</h4>
+            <ul>
+              <li><strong>Linear Expansion:</strong> ΔL = L₀ × α × ΔT</li>
+              <li><strong>Areal Expansion:</strong> ΔA = A₀ × 2α × ΔT</li>
+              <li><strong>Volumetric Expansion:</strong> ΔV = V₀ × 3α × ΔT</li>
+              <li>α = coefficient of linear expansion</li>
+              <li>ΔT = temperature change</li>
+            </ul>
+          </div>
+          <div class="info-section">
+            <h4>🏗️ Real-world Applications</h4>
+            <ul>
+              <li><strong>Railway Tracks:</strong> Expansion joints prevent buckling</li>
+              <li><strong>Bridges:</strong> Thermal expansion joints</li>
+              <li><strong>Thermometers:</strong> Mercury/glass expansion</li>
+              <li><strong>Bimetallic Strips:</strong> Different expansion rates</li>
+              <li><strong>Pipelines:</strong> Expansion loops and joints</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="thermal-btn secondary" onclick="window.thermalSimulator.reset()">Reset Simulation</button>
+        <button class="thermal-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="heatflow" class="practical-section" style="display: none;">
+    <div class="thermal-container">
+      <div class="thermal-header">
+        <h2>🌡️ Heat Flow Rate Simulator</h2>
+        <p>Explore conduction through materials using Fourier’s law: Q = k · A · ΔT / d</p>
+      </div>
+
+      <button id="heatflowDarkModeBtn" class="thermal-btn">Switch to Dark Mode</button>
+
+      <div class="thermal-controls">
+        <div class="control-panel">
+          <h3>🧪 Material</h3>
+          <div class="control-group">
+            <label for="hfMaterial">Material:</label>
+            <select id="hfMaterial">
+              <option value="copper">Copper (k=401)</option>
+              <option value="aluminum">Aluminum (k=237)</option>
+              <option value="iron">Iron (k=80)</option>
+              <option value="glass">Glass (k=1.0)</option>
+              <option value="wood">Wood (k=0.12)</option>
+              <option value="plastic">Plastic (k=0.2)</option>
+              <option value="custom">Custom...</option>
+            </select>
+          </div>
+          <div class="control-group" id="hfCustomKGroup" style="display:none">
+            <label for="hfCustomK">Custom k (W/m·K)</label>
+            <input type="number" id="hfCustomK" value="10" min="0" step="0.01">
+          </div>
+      <div class="control-group" id="hfCustomCGroup" style="display:none">
+        <label for="hfCustomC">Custom c (J/kg·K)</label>
+        <input type="number" id="hfCustomC" value="500" min="0" step="1">
+          </div>
+          <div class="control-group">
+            <label for="hfUnits">Units:</label>
+            <select id="hfUnits">
+              <option value="si" selected>SI (m, m², W/m·K)</option>
+              <option value="imp">Imperial (ft, ft², BTU/hr·ft·°F)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>📐 Geometry</h3>
+          <div class="control-group">
+            <label>Shape:</label>
+            <div class="radio-group">
+              <div class="radio-item"><input type="radio" name="hfGeom" id="hfSlab" value="slab" checked><label for="hfSlab">Slab/Plate</label></div>
+              <div class="radio-item"><input type="radio" name="hfGeom" id="hfRod" value="rod"><label for="hfRod">Rod</label></div>
+              <div class="radio-item"><input type="radio" name="hfGeom" id="hfWall" value="wall"><label for="hfWall">Multi-layer Wall</label></div>
+            </div>
+          </div>
+          <div class="control-group" id="hfLayersGroup" style="display:none">
+            <label>Layers (d/k):</label>
+            <div id="hfLayers"></div>
+            <div class="button-group">
+              <button id="hfAddLayer" class="thermal-btn">Add Layer</button>
+              <button id="hfClearLayers" class="thermal-btn secondary">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>🌡️ Conditions</h3>
+          <div class="control-group">
+            <label for="hfArea">Area A</label>
+            <input type="number" id="hfArea" value="0.01" min="0" step="0.0001">
+          </div>
+          <div class="control-group" id="hfDGroup">
+            <label for="hfD">Thickness/Length d</label>
+            <input type="number" id="hfD" value="0.02" min="0.0001" step="0.0001">
+          </div>
+          <div class="control-group">
+            <label for="hfT1">Hot side T₁</label>
+            <input type="number" id="hfT1" value="100" step="0.1">
+          </div>
+          <div class="control-group">
+            <label for="hfT2">Cold side T₂</label>
+            <input type="number" id="hfT2" value="20" step="0.1">
+          </div>
+          <div class="control-group">
+            <label>ΔT</label>
+            <div id="hfDeltaT">80</div>
+          </div>
+          <div class="button-group">
+            <button id="hfStart" class="thermal-btn">Start</button>
+            <button id="hfPause" class="thermal-btn secondary">Pause</button>
+            <button id="hfReset" class="thermal-btn danger">Reset</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>⚖️ Comparison</h3>
+          <div class="comparison-toggle">
+            <input type="checkbox" id="hfCompareToggle">
+            <label for="hfCompareToggle">Compare two materials</label>
+          </div>
+          <div class="comparison-controls" id="hfCompareControls" style="display:none">
+            <div class="comparison-column">
+              <h4>Material 1</h4>
+              <select id="hfMat1">
+                <option value="copper">Copper</option>
+                <option value="aluminum">Aluminum</option>
+                <option value="iron">Iron</option>
+                <option value="brass">Brass</option>
+                <option value="glass">Glass</option>
+                <option value="wood">Wood</option>
+                <option value="plastic">Plastic</option>
+              </select>
+              <div class="control-group" style="margin-top:8px">
+                <label for="hfT1A">Body A Temperature</label>
+                <input type="number" id="hfT1A" value="100" step="0.1">
+                <input type="range" id="hfT1ASlider" min="-50" max="500" value="100" step="0.1">
+              </div>
+              <div class="control-group" style="margin-top:8px">
+                <label for="hfMassA">Body A Mass (kg) (optional)</label>
+                <input type="number" id="hfMassA" value="1" min="0.01" step="0.01">
+              </div>
+            </div>
+            <div class="comparison-column">
+              <h4>Material 2</h4>
+              <select id="hfMat2">
+                <option value="glass">Glass</option>
+                <option value="copper">Copper</option>
+                <option value="aluminum">Aluminum</option>
+                <option value="iron">Iron</option>
+                <option value="brass">Brass</option>
+                <option value="wood">Wood</option>
+                <option value="plastic">Plastic</option>
+              </select>
+              <div class="control-group" style="margin-top:8px">
+                <label for="hfT1B">Body B Temperature</label>
+                <input type="number" id="hfT1B" value="20" step="0.1">
+                <input type="range" id="hfT1BSlider" min="-50" max="500" value="20" step="0.1">
+              </div>
+              <div class="control-group" style="margin-top:8px">
+                <label for="hfMassB">Body B Mass (kg) (optional)</label>
+                <input type="number" id="hfMassB" value="1" min="0.01" step="0.01">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-section">
+        <h3>🎨 Visualization</h3>
+        <div class="canvas-wrapper">
+          <canvas id="hfCanvas" width="800" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="data-panel">
+        <h3>📊 Real-time Data</h3>
+        <div class="data-grid">
+          <div class="data-item">
+            <div class="data-label">Formula</div>
+            <div class="formula-text">Q = k · A · ΔT / d</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Calculation</div>
+            <div class="result-text" id="hfCalc">401 × 0.01 × 80 / 0.02</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Heat Flow Rate</div>
+            <div class="data-value" id="hfQ">16040 W</div>
+          </div>
+        </div>
+        <div class="comparison-results" id="hfCompareTable" style="display:none; margin-top:12px">
+          <div class="comparison-result">
+            <h5>Q (Material 1)</h5>
+            <div class="value" id="hfQ1">--</div>
+          </div>
+          <div class="comparison-result">
+            <h5>Q (Material 2)</h5>
+            <div class="value" id="hfQ2">--</div>
+          </div>
+        </div>
+        <div class="comparison-results" id="hfLivePanel" style="display:none; margin-top:12px">
+          <div class="comparison-result">
+            <h5>ΔT (A - B)</h5>
+            <div class="value" id="hfDeltaTLive">--</div>
+          </div>
+          <div class="comparison-result">
+            <h5>Current Q (interface)</h5>
+            <div class="value" id="hfQLive">--</div>
+          </div>
+          <div class="comparison-result">
+            <h5>Predicted T at Equilibrium</h5>
+            <div class="value" id="hfTFinal">--</div>
+          </div>
+        </div>
+        <div id="hfEqText" style="display:none; margin-top:10px; text-align:center; font-weight:600">Equilibrium Reached – Heat transfer stopped</div>
+      </div>
+
+      <div class="graph-section">
+        <h3>📈 Graphs</h3>
+        <div class="graph-wrapper" style="margin-top:12px">
+          <div style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap">
+          <canvas id="hfGraphTT" width="600" height="250"></canvas>
+            <button id="hfGraphDownload" class="thermal-btn secondary">Download Graph (PNG)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <h3>ℹ️ Theory & Applications</h3>
+        <div class="info-content">
+          <div class="info-section">
+            <h4>📚 Fourier’s Law</h4>
+            <ul>
+              <li>Q = k · A · (T₁ - T₂) / d</li>
+              <li>Higher k → better conductor → more heat flow</li>
+              <li>Thicker material (larger d) → less heat flow</li>
+            </ul>
+          </div>
+          <div class="info-section">
+            <h4>🏗️ Real-world Applications</h4>
+            <ul>
+              <li>Insulation in buildings and refrigerators</li>
+              <li>Cookware materials and design</li>
+              <li>Heat exchangers efficiency</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="thermal-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="negative-charge" class="practical-section" style="display: none;">
+    <div class="charge-container">
+      <div class="charge-header">
+    <h2>➖ Charging a Body Negatively</h2>
+        <p>Explore frictional and induction charging with live electrons and charge tracking.</p>
+  </div>
+
+      <div class="charge-controls">
+        <div class="charge-panel">
+          <h3>Mode & Objects</h3>
+          <div class="control-group">
+            <label>Charging Method</label>
+            <select id="chargeMode">
+              <option value="friction">Friction (Rod & Wool)</option>
+              <option value="induction">Induction (Rod & Sphere)</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>Objects</label>
+            <div style="display:flex; gap:8px">
+              <select id="objA">
+                <option>Rubber Rod</option>
+                <option>Glass Rod</option>
+                <option>Plastic Rod</option>
+              </select>
+              <select id="objB">
+                <option>Wool</option>
+                <option>Silk</option>
+                <option>Metal Sphere</option>
+              </select>
+          </div>
+          </div>
+          <div class="control-group">
+            <label>Electron Speed</label>
+            <input type="range" id="chargeSpeed" min="0.2" max="3" step="0.1" value="1">
+            <span id="speedDisplay" style="margin-left:8px; font-weight:600">1.0x</span>
+          </div>
+          <div class="control-group" id="groundGroup" style="display:none; align-items:center; gap:10px">
+            <input type="checkbox" id="groundToggle">
+            <label for="groundToggle">Connect Ground (Induction)</label>
+          </div>
+        </div>
+        <div class="charge-panel">
+          <h3>Controls</h3>
+          <div class="charge-actions">
+            <button id="chargeStart" class="charge-btn">Play</button>
+            <button id="chargePause" class="charge-btn secondary">Pause</button>
+            <button id="chargeReset" class="charge-btn danger">Reset</button>
+            <button id="chargeDarkModeBtn" class="charge-btn secondary">Switch to Dark Mode</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="charge-canvas-panel">
+        <div class="charge-canvas-wrap">
+          <canvas id="chargeCanvas" width="900" height="360"></canvas>
+      </div>
+        </div>
+
+      <div class="charge-data">
+        <div class="charge-item"><div class="label">Live Charge</div><div class="value" id="dataRod">Rod/Sphere: 0e</div></div>
+        <div class="charge-item"><div class="label">Counterpart / Ground</div><div class="value" id="dataOther">Wool/Ground: 0e</div></div>
+        <div class="charge-item" style="grid-column: 1 / -1"><div class="label">Explanation</div><div class="value" id="dataNote">—</div></div>
+        </div>
+
+      <div class="graph-section">
+        <h3>📈 Charge vs Time</h3>
+        <div class="graph-wrapper">
+          <canvas id="chargeGraph" width="600" height="220"></canvas>
+        </div>
+        </div>
+
+      <div class="charge-theory">
+        <h3>ℹ️ Theory & Applications</h3>
+        <ul>
+          <li><strong>Friction:</strong> Rubbing transfers electrons from one material to another. The one gaining electrons becomes negative; the other positive.</li>
+          <li><strong>Induction:</strong> A nearby charged object redistributes charges in a conductor. With grounding, electrons can leave/enter, leaving a net charge after disconnect.</li>
+          <li><strong>Applications:</strong> Balloons sticking to walls, photocopiers/laser printers, powder coating, Van de Graaff generators.</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center; margin-top:16px">
+        <button class="charge-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="positive-charge" class="practical-section" style="display: none;">
+    <div class="charge-container">
+      <div class="charge-header">
+        <h2>➕ Charging a Body Positively (Conduction)</h2>
+        <p>Electrons flow from the neutral body to the positively charged body upon contact.</p>
+      </div>
+
+      <div class="charge-controls">
+        <div class="charge-panel">
+          <h3>Mode & Objects</h3>
+          <div class="control-group">
+            <label>Charging Method</label>
+            <select id="posMode" disabled>
+              <option value="conduction" selected>Conduction (Touch)</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>Objects</label>
+            <div style="display:flex; gap:8px">
+              <select id="posObjA">
+                <option>Metal Sphere (Positive)</option>
+                <option>Glass Rod (Positive)</option>
+                <option>Plastic Rod (Positive)</option>
+              </select>
+              <select id="posObjB">
+                <option>Metal Sphere (Neutral)</option>
+                <option>Glass Rod (Neutral)</option>
+                <option>Wool (Neutral)</option>
+                <option>Silk (Neutral)</option>
+                <option>Plastic Rod (Neutral)</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Electron Speed</label>
+            <input type="range" id="posSpeed" min="0.2" max="3" step="0.1" value="1">
+            <span id="posSpeedDisplay" style="margin-left:8px; font-weight:600">1.0x</span>
+          </div>
+        </div>
+        <div class="charge-panel">
+          <h3>Controls</h3>
+          <div class="charge-actions">
+            <button id="posStart" class="charge-btn">Play</button>
+            <button id="posPause" class="charge-btn secondary">Pause</button>
+            <button id="posReset" class="charge-btn danger">Reset</button>
+            <button id="posDarkModeBtn" class="charge-btn secondary">Switch to Dark Mode</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="charge-canvas-panel">
+        <div class="charge-canvas-wrap">
+          <canvas id="posCanvas" width="900" height="360"></canvas>
+        </div>
+      </div>
+
+      <div class="charge-data">
+        <div class="charge-item"><div class="label">Left Object</div><div class="value" id="posDataLeft">Left: 0e</div></div>
+        <div class="charge-item"><div class="label">Right Object</div><div class="value" id="posDataRight">Right: 0e</div></div>
+        <div class="charge-item" style="grid-column: 1 / -1"><div class="label">Explanation</div><div class="value" id="posNote">—</div></div>
+      </div>
+
+      <div class="charge-theory">
+        <h3>ℹ️ Theory & Applications</h3>
+        <ul>
+          <li><strong>Conduction:</strong> When a positively charged object touches a neutral object, electrons flow from the neutral object to the positive one. The neutral object becomes positively charged.</li>
+          <li><strong>Applications:</strong> Electroscope charging, touching metal spheres, demonstrations with Van de Graaff terminals.</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center; margin-top:16px">
+        <button class="charge-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="parallel-circuit" class="practical-section" style="display: none;">
+    <div class="charge-container">
+      <div class="charge-header">
+        <h2>🔌 Parallel Circuit Simulator</h2>
+        <p>Explore current splitting and equal voltage across parallel branches.</p>
+      </div>
+
+      <div class="charge-controls">
+        <div class="charge-panel">
+          <h3>Power Source & Controls</h3>
+          <div class="control-group">
+            <label>Battery Voltage: <span id="pcVoltLabel">12.0V</span></label>
+            <input type="range" id="pcVoltage" min="0" max="24" step="0.1" value="12">
+          </div>
+          <div class="control-group">
+            <label>Set Voltage Directly:</label>
+            <div style="display:flex; gap:8px; align-items:center">
+              <input type="number" id="pcVoltInput" min="0" max="24" step="0.1" value="12" style="max-width:80px">
+              <span>V</span>
+              <button id="pcSetVolt" class="charge-btn">Set</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Electron Speed: <span id="pcSpeedLabel">1.0x</span></label>
+            <input type="range" id="pcSpeed" min="0.2" max="3" step="0.1" value="1">
+          </div>
+          <div class="control-group">
+            <button id="pcAddBranch" class="charge-btn">Add Branch</button>
+            <button id="pcReset" class="charge-btn danger">Reset Circuit</button>
+            <button id="pcDark" class="charge-btn secondary">Switch to Dark Mode</button>
+          </div>
+        </div>
+        <div class="charge-panel">
+          <h3>Branches</h3>
+          <div id="pcBranchList" style="display:flex; flex-direction:column; gap:12px; max-height:200px; overflow-y:auto"></div>
+        </div>
+      </div>
+
+      <div class="charge-canvas-panel">
+        <div class="charge-canvas-wrap">
+          <canvas id="pcCanvas" width="900" height="380"></canvas>
+        </div>
+      </div>
+
+      <div class="charge-data">
+        <div class="charge-item"><div class="label">Total Current (Itotal)</div><div class="value" id="pcItotal">0.00 A</div></div>
+        <div class="charge-item"><div class="label">Equivalent Resistance (Req)</div><div class="value" id="pcReq">∞ Ω</div></div>
+        <div class="charge-item"><div class="label">Total Power (Ptotal)</div><div class="value" id="pcPtotal">0.00 W</div></div>
+        <div class="charge-item" style="grid-column: 1 / -1"><div class="label">Formulas</div><div class="value" id="pcFormula">I = V/R, Itotal = ΣIi, 1/Req = Σ(1/Ri), P = VI</div></div>
+      </div>
+
+      <div id="pcBranchInfo" style="margin-top:16px">
+        <h3>Branch Information</h3>
+        <div id="pcBranchInfoList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px"></div>
+      </div>
+
+      <div class="charge-theory">
+        <h3>ℹ️ Theory & Applications</h3>
+        <ul>
+          <li>In parallel circuits, voltage across each branch equals the source voltage.</li>
+          <li>Current divides among branches: Ii = V/Ri (switch ON).</li>
+          <li>Equivalent resistance: 1/Req = Σ(1/Ri); Itotal = ΣIi.</li>
+          <li>Applications: household wiring, power strips, car electrical systems.</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center; margin-top:16px">
+        <button class="charge-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="series-circuit" class="practical-section" style="display: none;">
+    <div class="charge-container">
+      <div class="charge-header">
+        <h2>🔗 Series Circuit Simulator</h2>
+        <p>Explore current flow and voltage drops in series circuits where current is the same throughout.</p>
+      </div>
+
+      <div class="charge-controls">
+        <div class="charge-panel">
+          <h3>Power Source & Controls</h3>
+          <div class="control-group">
+            <label>Battery Voltage: <span id="scVoltLabel">12.0V</span></label>
+            <input type="range" id="scVoltage" min="0" max="24" step="0.1" value="12">
+          </div>
+          <div class="control-group">
+            <label>Set Voltage Directly:</label>
+            <div style="display:flex; gap:8px; align-items:center">
+              <input type="number" id="scVoltInput" min="0" max="24" step="0.1" value="12" style="max-width:80px">
+              <span>V</span>
+              <button id="scSetVolt" class="charge-btn">Set</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Electron Speed: <span id="scSpeedLabel">1.0x</span></label>
+            <input type="range" id="scSpeed" min="0.2" max="3" step="0.1" value="1">
+          </div>
+          <div class="control-group">
+            <button id="scPlay" class="charge-btn">Play</button>
+            <button id="scPause" class="charge-btn secondary">Pause</button>
+            <button id="scAddResistor" class="charge-btn">Add Resistor</button>
+            <button id="scReset" class="charge-btn danger">Reset Circuit</button>
+            <button id="scDark" class="charge-btn secondary">Switch to Dark Mode</button>
+          </div>
+        </div>
+        <div class="charge-panel">
+          <h3>Resistors</h3>
+          <div id="scResistorList"></div>
+        </div>
+      </div>
+
+      <div class="charge-canvas-panel">
+        <div class="charge-canvas-wrap">
+          <canvas id="scCanvas" width="1200" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="charge-data">
+        <div class="charge-item"><div class="label">Total Current (I)</div><div class="value" id="scItotal">0.000 A</div></div>
+        <div class="charge-item"><div class="label">Total Resistance (Rtotal)</div><div class="value" id="scRtotal">0 Ω</div></div>
+        <div class="charge-item"><div class="label">Total Power (Ptotal)</div><div class="value" id="scPtotal">0.00 W</div></div>
+        <div class="charge-item" style="grid-column: 1 / -1"><div class="label">Formulas</div><div class="value" id="scFormula">Rtotal = ΣRi, I = V/Rtotal, Vi = I×Ri, P = VI</div></div>
+      </div>
+
+      <div id="scResistorInfo" style="margin-top:16px">
+        <h3>Resistor Information</h3>
+        <div id="scResistorInfoList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px"></div>
+      </div>
+
+      <div class="charge-theory">
+        <h3>ℹ️ Theory & Applications</h3>
+        <ul>
+          <li>In series circuits, current is the same through all components: I₁ = I₂ = I₃ = Itotal</li>
+          <li>Total resistance: Rtotal = R₁ + R₂ + R₃ + ... (resistances add up)</li>
+          <li>Voltage drops: V₁ = I×R₁, V₂ = I×R₂, and V₁ + V₂ + ... = Vbattery</li>
+          <li>Applications: Christmas lights, flashlights, voltage dividers, current limiting</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center; margin-top:16px">
+        <button class="charge-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="projectile-motion" class="practical-section" style="display: none;">
+    <div class="projectile-container">
+      <div class="projectile-header">
+        <h2>🎯 Projectile Motion Simulator</h2>
+        <p>Explore 2D motion of projectiles under gravity with realistic trajectories and physics formulas</p>
+      </div>
+
+      <button id="projectileDarkModeBtn" class="projectile-btn">Switch to Dark Mode</button>
+
+      <!-- Comparison Mode Toggle -->
+      <div class="control-panel comparison-toggle-panel">
+        <h3>⚖️ Simulation Mode</h3>
+        <div class="control-group">
+          <label class="comparison-toggle">
+            <input type="checkbox" id="comparisonModeToggle">
+            <span class="toggle-label">Enable Comparison Mode</span>
+          </label>
+          <p class="toggle-description">Compare two projectiles with different parameters side by side</p>
+        </div>
+      </div>
+
+      <div class="projectile-controls">
+        <!-- Single Mode Controls -->
+        <div class="single-mode">
+          <div class="control-panel" id="singleLaunchPanel">
+            <h3>🚀 Launch Parameters</h3>
+            <div class="control-group">
+              <label for="initialVelocity">Initial Velocity: <span id="velocityDisplay">50</span> m/s</label>
+              <input type="range" id="initialVelocity" min="10" max="100" value="50">
+              <input type="number" id="initialVelocityInput" min="10" max="100" step="1" value="50">
+            </div>
+            <div class="control-group">
+              <label for="launchAngle">Launch Angle: <span id="angleDisplay">45</span>°</label>
+              <input type="range" id="launchAngle" min="0" max="90" value="45">
+              <input type="number" id="launchAngleInput" min="0" max="90" step="1" value="45">
+            </div>
+            <div class="control-group">
+              <label for="gravitySelect">Gravity:</label>
+              <select id="gravitySelect">
+                <option value="9.81">Earth (9.81 m/s²)</option>
+                <option value="1.62">Moon (1.62 m/s²)</option>
+                <option value="3.71">Mars (3.71 m/s²)</option>
+                <option value="24.79">Jupiter (24.79 m/s²)</option>
+                <option value="custom">Custom...</option>
+              </select>
+            </div>
+            <div class="control-group" id="customGravityGroup" style="display:none">
+              <label for="customGravity">Custom Gravity (m/s²):</label>
+              <input type="number" id="customGravity" value="9.81" min="0.1" max="50" step="0.1">
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Mode Controls -->
+        <div class="comparison-mode" style="display: none;">
+          <div class="projectile-section">
+            <!-- Projectile 1 (Red) -->
+            <div class="projectile-card red">
+              <h3>🎯 Projectile 1 (Red)</h3>
+              <div class="control-group">
+                <label for="projectile1Velocity">Initial Velocity: <span id="projectile1VelocityDisplay">50</span> m/s</label>
+                <input type="range" id="projectile1Velocity" min="10" max="100" value="50" class="red-slider">
+                <input type="number" id="projectile1VelocityInput" min="10" max="100" step="1" value="50">
+              </div>
+              <div class="control-group">
+                <label for="projectile1Angle">Launch Angle: <span id="projectile1AngleDisplay">45</span>°</label>
+                <input type="range" id="projectile1Angle" min="0" max="90" value="45" class="red-slider">
+                <input type="number" id="projectile1AngleInput" min="0" max="90" step="1" value="45">
+              </div>
+              <div class="control-group">
+                <label for="projectile1Mass">Mass: <span id="projectile1MassDisplay">1.0</span> kg</label>
+                <input type="range" id="projectile1Mass" min="0.1" max="5" step="0.1" value="1.0" class="red-slider">
+              </div>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="projectile1AirResistance"> Air Resistance
+                </label>
+              </div>
+              <div class="control-group">
+                <label for="projectile1Gravity">Gravity:</label>
+                <select id="projectile1Gravity">
+                  <option value="9.81">Earth (9.81 m/s²)</option>
+                  <option value="1.62">Moon (1.62 m/s²)</option>
+                  <option value="3.71">Mars (3.71 m/s²)</option>
+                  <option value="24.79">Jupiter (24.79 m/s²)</option>
+                  <option value="custom">Custom...</option>
+                </select>
+              </div>
+              <div class="control-group" id="projectile1CustomGravityGroup" style="display:none">
+                <label for="projectile1CustomGravity">Custom Gravity (m/s²):</label>
+                <input type="number" id="projectile1CustomGravity" value="9.81" min="0.1" max="50" step="0.1">
+              </div>
+            </div>
+
+            <!-- Projectile 2 (Blue) -->
+            <div class="projectile-card blue">
+              <h3>🎯 Projectile 2 (Blue)</h3>
+              <div class="control-group">
+                <label for="projectile2Velocity">Initial Velocity: <span id="projectile2VelocityDisplay">60</span> m/s</label>
+                <input type="range" id="projectile2Velocity" min="10" max="100" value="60" class="blue-slider">
+                <input type="number" id="projectile2VelocityInput" min="10" max="100" step="1" value="60">
+              </div>
+              <div class="control-group">
+                <label for="projectile2Angle">Launch Angle: <span id="projectile2AngleDisplay">30</span>°</label>
+                <input type="range" id="projectile2Angle" min="0" max="90" value="30" class="blue-slider">
+                <input type="number" id="projectile2AngleInput" min="0" max="90" step="1" value="30">
+              </div>
+              <div class="control-group">
+                <label for="projectile2Mass">Mass: <span id="projectile2MassDisplay">1.0</span> kg</label>
+                <input type="range" id="projectile2Mass" min="0.1" max="5" step="0.1" value="1.0" class="blue-slider">
+              </div>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="projectile2AirResistance"> Air Resistance
+                </label>
+              </div>
+              <div class="control-group">
+                <label for="projectile2Gravity">Gravity:</label>
+                <select id="projectile2Gravity">
+                  <option value="9.81">Earth (9.81 m/s²)</option>
+                  <option value="1.62">Moon (1.62 m/s²)</option>
+                  <option value="3.71">Mars (3.71 m/s²)</option>
+                  <option value="24.79">Jupiter (24.79 m/s²)</option>
+                  <option value="custom">Custom...</option>
+                </select>
+              </div>
+              <div class="control-group" id="projectile2CustomGravityGroup" style="display:none">
+                <label for="projectile2CustomGravity">Custom Gravity (m/s²):</label>
+                <input type="number" id="projectile2CustomGravity" value="9.81" min="0.1" max="50" step="0.1">
+              </div>
+            </div>
+          </div>
+
+          <div class="side-panel">
+            <!-- Box A: Environment Settings -->
+            <div class="panel-box environment">
+              <h3>🌬️ Environment</h3>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="showVectors" checked> Show Velocity Vectors
+                </label>
+              </div>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="showTrajectory" checked> Show Trajectory Path
+                </label>
+              </div>
+            </div>
+
+            <!-- Box B: Camera Controls -->
+            <div class="panel-box camera">
+              <h3>📷 Camera Controls</h3>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="followProjectile"> Follow Projectile
+                </label>
+              </div>
+              <div class="control-group">
+                <label>
+                  <input type="checkbox" id="autoScaleCanvas"> Auto-Scale Canvas
+                </label>
+              </div>
+              <div class="control-group">
+                <label for="followTarget">Follow Target:</label>
+                <select id="followTarget">
+                  <option value="projectile1">Projectile 1</option>
+                  <option value="projectile2">Projectile 2</option>
+                  <option value="both" selected>Both</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <button id="resetViewBtn" class="projectile-btn secondary">📷 Reset View</button>
+              </div>
+              <div class="control-group">
+                <p style="font-size: 0.9rem; color: #666; margin: 8px 0;">💡 Tip: Use mouse wheel to zoom, drag to pan (when not following)</p>
+              </div>
+            </div>
+
+            <!-- Box C: Controls -->
+            <div class="panel-box controls">
+              <h3>🎮 Controls</h3>
+              <div class="projectile-actions">
+                <button id="launchBoth" class="projectile-btn launch-both-btn">🚀 Launch Both</button>
+                <button id="syncParameters" class="projectile-btn secondary">🔄 Sync Parameters</button>
+                <button id="randomizeParameters" class="projectile-btn secondary">🎲 Randomize</button>
+                <button id="resetBtn" class="projectile-btn secondary">🔄 Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Environment Controls (Single Mode Only) -->
+        <div class="control-panel single-mode">
+          <h3>🌬️ Environment</h3>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="airResistance"> Air Resistance
+            </label>
+          </div>
+          <div class="control-group" id="dragGroup" style="display:none">
+            <label for="dragCoeff">Drag Coefficient: <span id="dragDisplay">0.47</span></label>
+            <input type="range" id="dragCoeff" min="0.1" max="2" step="0.01" value="0.47">
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="showVectors" checked> Show Velocity Vectors
+            </label>
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="showTrajectory" checked> Show Trajectory Path
+            </label>
+          </div>
+        </div>
+
+        <!-- Single Mode Controls -->
+        <div class="single-mode control-panel">
+          <h3>🎮 Controls</h3>
+          <div class="projectile-actions">
+            <button id="launchBtn" class="projectile-btn">🚀 Launch</button>
+            <button id="resetBtn" class="projectile-btn secondary">🔄 Reset</button>
+            <button id="replayBtn" class="projectile-btn secondary">▶️ Replay</button>
+          </div>
+        </div>
+
+        <!-- Camera Controls Panel (Single Mode Only) -->
+        <div class="control-panel single-mode">
+          <h3>📷 Camera Controls</h3>
+          <div class="control-group">
+            <button id="resetViewBtn" class="projectile-btn secondary">📷 Reset View</button>
+          </div>
+          <div class="control-group">
+            <p style="font-size: 0.9rem; color: #666; margin: 8px 0;">💡 Tip: Use mouse wheel to zoom, drag to pan</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="canvas-section">
+        <h3>🎨 Simulation</h3>
+        <div class="canvas-wrapper">
+          <canvas id="projectileCanvas" width="800" height="500"></canvas>
+        </div>
+      </div>
+
+      <!-- Single Mode Data Panel -->
+      <div class="data-panel single-mode" id="singleModeData">
+        <h3>📊 Real-time Data</h3>
+        <div class="data-grid">
+          <div class="data-item">
+            <div class="data-label">Time of Flight</div>
+            <div class="data-value" id="timeOfFlight">0.00 s</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Max Height</div>
+            <div class="data-value" id="maxHeight">0.00 m</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Range</div>
+            <div class="data-value" id="range">0.00 m</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Current Position</div>
+            <div class="data-value" id="currentPos">(0, 0) m</div>
+          </div>
+        </div>
+        
+        <div class="formula-display">
+          <h4>📐 Physics Equations</h4>
+          <div class="equation">Horizontal: x = v₀cos(θ) × t</div>
+          <div class="equation">Vertical: y = v₀sin(θ) × t - ½gt²</div>
+          <div class="equation">Range: R = v₀²sin(2θ)/g</div>
+          <div class="equation">Max Height: H = v₀²sin²(θ)/(2g)</div>
+        </div>
+      </div>
+
+      <!-- Comparison Mode Data Panels -->
+      <div class="comparison-mode" style="display: none;">
+        <div class="comparison-data-container">
+          <!-- Projectile 1 Data -->
+          <div class="data-panel projectile1-data">
+            <h3>📊 Projectile 1 (Red) Data</h3>
+            <div class="data-grid">
+              <div class="data-item">
+                <div class="data-label">Velocity</div>
+                <div class="data-value" id="projectile1CurrentVelocity">50 m/s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Angle</div>
+                <div class="data-value" id="projectile1CurrentAngle">45°</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Time of Flight</div>
+                <div class="data-value" id="projectile1TimeOfFlight">0.00 s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Max Height</div>
+                <div class="data-value" id="projectile1MaxHeight">0.00 m</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Range</div>
+                <div class="data-value" id="projectile1Range">0.00 m</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Final Velocity</div>
+                <div class="data-value" id="projectile1FinalVelocity">0.00 m/s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Current Position</div>
+                <div class="data-value" id="projectile1CurrentPos">(0, 0) m</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projectile 2 Data -->
+          <div class="data-panel projectile2-data">
+            <h3>📊 Projectile 2 (Blue) Data</h3>
+            <div class="data-grid">
+              <div class="data-item">
+                <div class="data-label">Velocity</div>
+                <div class="data-value" id="projectile2CurrentVelocity">60 m/s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Angle</div>
+                <div class="data-value" id="projectile2CurrentAngle">30°</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Time of Flight</div>
+                <div class="data-value" id="projectile2TimeOfFlight">0.00 s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Max Height</div>
+                <div class="data-value" id="projectile2MaxHeight">0.00 m</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Range</div>
+                <div class="data-value" id="projectile2Range">0.00 m</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Final Velocity</div>
+                <div class="data-value" id="projectile2FinalVelocity">0.00 m/s</div>
+              </div>
+              <div class="data-item">
+                <div class="data-label">Current Position</div>
+                <div class="data-value" id="projectile2CurrentPos">(0, 0) m</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Results Summary -->
+        <div class="data-panel comparison-results">
+          <h3>🏆 Comparison Results</h3>
+          <div class="winners-grid">
+            <div class="winner-item range-winner">
+              <div class="winner-label">🏆 Winner (Range)</div>
+              <div class="winner-value" id="rangeWinner">-</div>
+              <div class="difference-label">ΔRange</div>
+              <div class="difference-value" id="rangeDifference">0.00 m</div>
+            </div>
+            <div class="winner-item height-winner">
+              <div class="winner-label">🏆 Winner (Height)</div>
+              <div class="winner-value" id="heightWinner">-</div>
+              <div class="difference-label">ΔMax Height</div>
+              <div class="difference-value" id="heightDifference">0.00 m</div>
+            </div>
+            <div class="winner-item time-winner">
+              <div class="winner-label">🏆 Winner (Flight Time)</div>
+              <div class="winner-value" id="timeWinner">-</div>
+              <div class="difference-label">ΔFlight Time</div>
+              <div class="difference-value" id="timeDifference">0.00 s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Single Mode Graph -->
+      <div class="graph-section single-mode">
+        <h3>📈 Trajectory Graph</h3>
+        <div class="graph-wrapper">
+          <canvas id="trajectoryGraph" width="600" height="300"></canvas>
+        </div>
+      </div>
+
+      <!-- Comparison Mode Graphs -->
+      <div class="comparison-mode" style="display: none;">
+        <div class="graphs-container">
+          <div class="graph-section comparison-trajectory">
+            <h3>📈 Combined Trajectory Comparison</h3>
+            <div class="graph-wrapper">
+              <canvas id="comparisonTrajectoryGraph" width="800" height="400"></canvas>
+            </div>
+            <div class="trajectory-legend">
+              <div class="legend-item">
+                <div class="legend-color red"></div>
+                <span>Projectile 1 (Red)</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color blue"></div>
+                <span>Projectile 2 (Blue)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph-section velocity-time">
+            <h3>📈 Velocity vs Time Comparison</h3>
+            <div class="graph-wrapper">
+              <canvas id="velocityTimeGraph" width="600" height="300"></canvas>
+            </div>
+          </div>
+
+          <div class="graph-section height-time">
+            <h3>📈 Height vs Time Comparison</h3>
+            <div class="graph-wrapper">
+              <canvas id="heightTimeGraph" width="600" height="300"></canvas>
+            </div>
+          </div>
+
+          <div class="graph-section range-comparison">
+            <h3>📈 Range Comparison Bar Chart</h3>
+            <div class="graph-wrapper">
+              <canvas id="rangeComparisonChart" width="600" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="projectile-btn secondary" onclick="window.projectileSimulator.reset()">Reset Simulation</button>
+        <button class="projectile-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="pendulum-simulator" class="practical-section" style="display: none;">
+    <div class="pendulum-container">
+      <div class="pendulum-header">
+        <h2>⚖️ Pendulum Simulator</h2>
+        <p>Visualize simple harmonic motion with realistic swinging animation and physics analysis</p>
+      </div>
+
+      <button id="pendulumDarkModeBtn" class="pendulum-btn">Switch to Dark Mode</button>
+
+      <div class="pendulum-controls">
+        <div class="control-panel">
+          <h3>⚙️ Pendulum Parameters</h3>
+          <div class="control-group">
+            <label for="stringLength">String Length: <span id="lengthDisplay">1.0</span> m</label>
+            <input type="range" id="stringLength" min="0.5" max="3" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="bobMass">Bob Mass: <span id="massDisplay">1.0</span> kg</label>
+            <input type="range" id="bobMass" min="0.1" max="5" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="initialAngle">Initial Angle: <span id="initAngleDisplay">30</span>°</label>
+            <input type="range" id="initialAngle" min="5" max="85" value="30">
+          </div>
+          <div class="control-group">
+            <label for="pendulumGravity">Gravity:</label>
+            <select id="pendulumGravity">
+              <option value="9.81">Earth (9.81 m/s²)</option>
+              <option value="1.62">Moon (1.62 m/s²)</option>
+              <option value="3.71">Mars (3.71 m/s²)</option>
+              <option value="24.79">Jupiter (24.79 m/s²)</option>
+              <option value="custom">Custom...</option>
+            </select>
+          </div>
+          <div class="control-group" id="pendulumCustomGravityGroup" style="display:none">
+            <label for="pendulumCustomGravity">Custom Gravity (m/s²):</label>
+            <input type="number" id="pendulumCustomGravity" value="9.81" min="0.1" max="50" step="0.1">
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>🌊 Damping & Effects</h3>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="dampingToggle"> Air Damping
+            </label>
+          </div>
+          <div class="control-group" id="dampingGroup" style="display:none">
+            <label for="dampingCoeff">Damping Coefficient: <span id="dampingDisplay">0.02</span></label>
+            <input type="range" id="dampingCoeff" min="0.001" max="0.1" step="0.001" value="0.02">
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="showForceVectors" checked> Show Force Vectors
+            </label>
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="smallAngleApprox"> Small Angle Approximation
+            </label>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h3>🎮 Controls</h3>
+          <div class="pendulum-actions">
+            <button id="startPendulum" class="pendulum-btn">▶️ Start</button>
+            <button id="pausePendulum" class="pendulum-btn secondary">⏸️ Pause</button>
+            <button id="resetPendulum" class="pendulum-btn secondary">🔄 Reset</button>
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="doublePendulum"> Double Pendulum Mode
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="doublePendulumControls" class="pendulum-controls" style="display:none; margin-top:16px; border-top:2px solid #8b5a2b; padding-top:16px;">
+        <div class="control-panel">
+          <h3>⚖️ First Pendulum</h3>
+          <div class="control-group">
+            <label for="length1">Length 1: <span id="length1Display">1.0</span> m</label>
+            <input type="range" id="length1" min="0.3" max="2" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="mass1">Mass 1: <span id="mass1Display">1.0</span> kg</label>
+            <input type="range" id="mass1" min="0.1" max="3" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="pendulumAngle1">Initial Angle 1: <span id="pendulumAngle1Display">45</span>°</label>
+            <input type="range" id="pendulumAngle1" min="5" max="85" value="45">
+          </div>
+        </div>
+        
+        <div class="control-panel">
+          <h3>⚖️ Second Pendulum</h3>
+          <div class="control-group">
+            <label for="length2">Length 2: <span id="length2Display">1.0</span> m</label>
+            <input type="range" id="length2" min="0.3" max="2" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="mass2">Mass 2: <span id="mass2Display">1.0</span> kg</label>
+            <input type="range" id="mass2" min="0.1" max="3" step="0.1" value="1.0">
+          </div>
+          <div class="control-group">
+            <label for="pendulumAngle2">Initial Angle 2: <span id="pendulumAngle2Display">30</span>°</label>
+            <input type="range" id="pendulumAngle2" min="5" max="85" value="30">
+          </div>
+        </div>
+        
+        <div class="control-panel">
+          <h3>🎮 Double Pendulum Controls</h3>
+          <div class="pendulum-actions">
+            <button id="startDouble" class="pendulum-btn">▶️ Start Double</button>
+            <button id="resetDouble" class="pendulum-btn secondary">🔄 Reset</button>
+          </div>
+          <div class="control-group">
+            <label>
+              <input type="checkbox" id="showTrail" checked> Show Trail
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-section">
+        <h3>🎨 Pendulum Animation</h3>
+        <div class="canvas-wrapper">
+          <canvas id="pendulumCanvas" width="600" height="500"></canvas>
+        </div>
+      </div>
+
+      <div class="data-panel">
+        <h3>📊 Real-time Data</h3>
+        <div class="data-grid">
+          <div class="data-item">
+            <div class="data-label">Period (T)</div>
+            <div class="data-value" id="period">2.01 s</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Frequency (f)</div>
+            <div class="data-value" id="frequency">0.50 Hz</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Max Speed</div>
+            <div class="data-value" id="maxSpeed">0.00 m/s</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Current Angle</div>
+            <div class="data-value" id="currentAngle">30°</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Kinetic Energy</div>
+            <div class="data-value" id="kineticEnergy">0.00 J</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Potential Energy</div>
+            <div class="data-value" id="potentialEnergy">0.00 J</div>
+          </div>
+        </div>
+        
+        <div class="formula-display">
+          <h4>📐 Physics Equations</h4>
+          <div class="equation">Period: T = 2π√(L/g)</div>
+          <div class="equation">Frequency: f = 1/T</div>
+          <div class="equation">Angular Frequency: ω = √(g/L)</div>
+          <div class="equation">Restoring Force: F = -mg sin(θ)</div>
+        </div>
+      </div>
+
+      <div class="graph-section">
+        <h3>📈 Motion Graphs</h3>
+        <div class="graph-wrapper">
+          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center">
+            <div style="flex:1; min-width:300px">
+              <h4>Displacement vs Time</h4>
+              <canvas id="displacementGraph" width="400" height="250"></canvas>
+            </div>
+            <div style="flex:1; min-width:300px">
+              <h4>Energy vs Time</h4>
+              <canvas id="energyGraph" width="400" height="250"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="pendulum-btn secondary" onclick="window.pendulumSimulator.reset()">Reset Simulation</button>
+        <button class="pendulum-btn" onclick="goHome()">⬅ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3><img src="images/logo.png" alt="Logo" style="height: 32px; vertical-align: middle; margin-right: 8px;"> Empowering Curiosity with Simulations</h3>
+      <p>Developed with ❤️ by <strong>Krish.K.Chaudhary </strong></p>
+      <p>&copy; 2025 Physics Practical Lab. All rights reserved.</p>
+      <p class="footer-links">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enjoy91901@gmail.com" target="_blank">Contact</a> |
+        <span>Version 1.0</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS Functionality -->
+  <script>
+    // Global dark mode functionality
+    let globalDarkMode = false;
+    
+    function toggleGlobalDarkMode() {
+      globalDarkMode = !globalDarkMode;
+      document.body.classList.toggle("dark-mode", globalDarkMode);
+      
+      // Update all dark mode buttons
+      const darkModeButtons = document.querySelectorAll('[id*="dark-mode"], [id*="DarkMode"]');
+      darkModeButtons.forEach(btn => {
+        if (btn) {
+          btn.textContent = globalDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+        }
+      });
+    }
+    
+    function showPractical(id, addToHistory = true) {
+      document.getElementById('home-page').style.display = 'none';
+      const sections = document.querySelectorAll('.practical-section');
+      sections.forEach(section => section.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0, 0);
+      
+      // Add to browser history only if requested (not when called from popstate)
+      if (addToHistory) {
+        const currentUrl = window.location.href.split('#')[0];
+        const newUrl = currentUrl + '#' + id;
+        history.pushState({page: id}, '', newUrl);
+      }
+    }
+
+    function goHome() {
+      document.getElementById('home-page').style.display = 'block';
+      const sections = document.querySelectorAll('.practical-section');
+      sections.forEach(section => section.style.display = 'none');
+      window.scrollTo(0, 0);
+      
+      // Add to browser history
+      const currentUrl = window.location.href.split('#')[0];
+      history.pushState({page: 'home'}, '', currentUrl);
+    }
+    
+    function handlePopState(event) {
+      // Handle browser back/forward button
+      const currentHash = window.location.hash.substring(1); // Remove the #
+      
+      if (currentHash === '' || currentHash === 'home') {
+        // Go to home page
+        document.getElementById('home-page').style.display = 'block';
+        const sections = document.querySelectorAll('.practical-section');
+        sections.forEach(section => section.style.display = 'none');
+      } else {
+        // Go to specific practical section (don't add to history to avoid infinite loop)
+        showPractical(currentHash, false);
+      }
+      window.scrollTo(0, 0);
+    }
+    
+    // Initialize event listeners when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listener for home page dark mode button
+      const homeDarkModeBtn = document.getElementById('dark-mode');
+      if (homeDarkModeBtn) {
+        homeDarkModeBtn.addEventListener('click', toggleGlobalDarkMode);
+      }
+      
+      // Make goHome function globally accessible
+      window.goHome = goHome;
+      window.toggleGlobalDarkMode = toggleGlobalDarkMode;
+      
+      // Add browser back/forward button support
+      window.addEventListener('popstate', handlePopState);
+      
+      // Handle initial page load based on URL hash
+      const currentHash = window.location.hash.substring(1);
+      if (currentHash && currentHash !== 'home') {
+        // Load the specific practical section from URL (don't add to history)
+        showPractical(currentHash, false);
+      } else {
+        // Ensure home page is displayed
+        document.getElementById('home-page').style.display = 'block';
+        const sections = document.querySelectorAll('.practical-section');
+        sections.forEach(section => section.style.display = 'none');
+      }
+      
+      // Add keyboard navigation support
+      document.addEventListener('keydown', function(event) {
+        // Check if Escape key is pressed
+        if (event.key === 'Escape') {
+          // Check if we're not on the home page
+          const homePage = document.getElementById('home-page');
+          if (homePage && homePage.style.display !== 'block') {
+            goHome();
+          }
+        }
+      });
+    });
+  </script>
+
+  <script src="script.js"></script>
+  <script src="refraction.js"></script>
+  <script src="reflection.js"></script>
+  <script src="heatflow.js"></script>
+  <script src="thermal.js"></script>
+  <script src="charge.js"></script>
+  <script src="positive.js"></script>
+  <script src="parallel.js"></script>
+  <script src="series.js"></script>
+  <script src="projectile.js"></script>
+
+  <script src="pendulum.js"></script>
+</body>
+</html>
+
+
